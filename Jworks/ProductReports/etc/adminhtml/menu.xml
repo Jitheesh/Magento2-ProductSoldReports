@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category Jworks
+ * @package ProductReports
+ * @author Jitheesh V O <jitheeshvo@gmail.com>
+ * @copyright Copyright (c) 2018 Digital Boutique (http://www.digitalboutique.co.uk/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Jworks_ProductReports::report_products_sold" title="Products Sold Details" translate="title"
+             module="Jworks_ProductReports"
+             sortOrder="40" parent="Magento_Reports::report_products" action="advancedreports/report_product/details"
+             resource="Magento_Reports::sold"/>
+    </menu>
+</config>
+

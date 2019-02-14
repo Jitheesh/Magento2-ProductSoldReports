@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category Jworks
+ * @package ProductReports
+ * @author Jitheesh V O <jitheeshvo@gmail.com>
+ * @copyright Copyright (c) 2018 Digital Boutique (http://www.digitalboutique.co.uk/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="advancedreports" frontName="advancedreports">
+            <module name="Jworks_ProductReports" before="Magento_Reports"/>
+        </route>
+    </router>
+</config>

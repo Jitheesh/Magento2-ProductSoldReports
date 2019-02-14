@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.main.actions">
+            <block class="Magento\Backend\Block\Store\Switcher" name="adminhtml.report.grid.store_switcher" as="store_switcher">
+                <arguments>
+                    <argument name="use_confirm" xsi:type="string">0</argument>
+                    <argument name="switch_websites" xsi:type="string">1</argument>
+                    <argument name="switch_store_groups" xsi:type="string">1</argument>
+                    <argument name="switch_store_views" xsi:type="string">1</argument>
+                    <argument name="default_selection_name" xsi:type="string" translate="true">All Websites</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="adminhtml.report.grid.container">
+            <block class="Jworks\ProductReports\Block\Adminhtml\Grid" name="adminhtml.report.grid" as="grid">
+                <arguments>
+                    <argument name="use_ajax" xsi:type="string">0</argument>
+                    <argument name="pager_visibility" xsi:type="string">0</argument>
+                    <argument name="id" xsi:type="string">gridProductsSold</argument>
+                    <argument name="dataSource" xsi:type="object">Jworks\ProductReports\Model\ResourceModel\Product\Sold\Collection\Initial</argument>
+                </arguments>
+                <action method="setTemplate">
+                    <argument name="template" xsi:type="string">Jworks_ProductReports::grid.phtml</argument>
+                </action>
+                <block class="Magento\Backend\Block\Widget\Grid\Export" name="adminhtml.report.grid.export" as="grid.export">
+                    <arguments>
+                        <argument name="exportTypes" xsi:type="array">
+                            <item name="csv" xsi:type="array">
+                                <item name="urlPath" xsi:type="string">*/*/exportCsv</item>
+                                <item name="label" xsi:type="string" translate="true">CSV</item>
+                            </item>
+                        </argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Backend\Block\Widget\Grid\ColumnSet" as="grid.columnSet" name="adminhtml.report.grid.columnSet">
+                    <arguments>
+                        <argument name="filter_visibility" xsi:type="string">0</argument>
+                        <argument name="empty_text" xsi:type="string" translate="true">We can't find records for this period.</argument>
+                        <argument name="empty_cell_label" xsi:type="string" translate="true">We can't find records for this period.</argument>
+                        <argument name="id" xsi:type="string">report_product_sold</argument>
+                        <argument name="count_totals" xsi:type="string">1</argument>
+                    </arguments>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="order_id">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Order Id</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">order_id</argument>
+                            <argument name="id" xsi:type="string">order_id</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-order_id</argument>
+                            <argument name="header_css_class" xsi:type="string">col-order_id</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="order_created_at">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Purchase Date</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">created_at</argument>
+                            <argument name="id" xsi:type="string">created_at</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-order_created_at</argument>
+                            <argument name="header_css_class" xsi:type="string">col-order_created_at</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="order_status">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Status</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">status</argument>
+                            <argument name="id" xsi:type="string">status</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-status</argument>
+                            <argument name="header_css_class" xsi:type="string">col-status</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="order_items_name">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Product</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">order_items_name</argument>
+                            <argument name="id" xsi:type="string">order_items_name</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-product</argument>
+                            <argument name="header_css_class" xsi:type="string">col-product</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="sku">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Sku</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">sku</argument>
+                            <argument name="id" xsi:type="string">sku</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-product-sku</argument>
+                            <argument name="header_css_class" xsi:type="string">col-product-sku</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="custom_data">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Personalisation Data</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">custom_data</argument>
+                            <argument name="id" xsi:type="string">custom_data</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="renderer" xsi:type="string">Jworks\ProductReports\Block\Adminhtml\Template\Reports\Personalisation\Renderer</argument>
+                            <argument name="column_css_class" xsi:type="string">col-product-custom_data</argument>
+                            <argument name="header_css_class" xsi:type="string">col-product-custom_data</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="qty">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Qty Ordered</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">ordered_qty</argument>
+                            <argument name="id" xsi:type="string">ordered_qty</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-product-qty</argument>
+                            <argument name="header_css_class" xsi:type="string">col-product-qty</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="email">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Email</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">customer_email</argument>
+                            <argument name="id" xsi:type="string">customer_email</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-email</argument>
+                            <argument name="header_css_class" xsi:type="string">col-email</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="name">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Ship-to Name</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">name</argument>
+                            <argument name="id" xsi:type="string">name</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-name</argument>
+                            <argument name="header_css_class" xsi:type="string">col-name</argument>
+                        </arguments>
+                    </block>
+
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="street">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Street</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">street</argument>
+                            <argument name="id" xsi:type="string">street</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-street</argument>
+                            <argument name="header_css_class" xsi:type="string">col-street</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="city">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">City</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">city</argument>
+                            <argument name="id" xsi:type="string">city</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-city</argument>
+                            <argument name="header_css_class" xsi:type="string">col-city</argument>
+                        </arguments>
+                    </block>
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="region">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Region</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">region</argument>
+                            <argument name="id" xsi:type="string">region</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-region</argument>
+                            <argument name="header_css_class" xsi:type="string">col-region</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="company">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Company</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">company</argument>
+                            <argument name="id" xsi:type="string">company</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-company</argument>
+                            <argument name="header_css_class" xsi:type="string">col-company</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="postcode">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Postcode</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">postcode</argument>
+                            <argument name="id" xsi:type="string">postcode</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-postcode</argument>
+                            <argument name="header_css_class" xsi:type="string">col-postcode</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="country">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Country</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">country_id</argument>
+                            <argument name="id" xsi:type="string">country_id</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-country_id</argument>
+                            <argument name="header_css_class" xsi:type="string">col-country_id</argument>
+                        </arguments>
+                    </block>
+
+                    <block class="Magento\Backend\Block\Widget\Grid\Column" as="telephone">
+                        <arguments>
+                            <argument name="header" xsi:type="string" translate="true">Telephone</argument>
+                            <argument name="type" xsi:type="string">text</argument>
+                            <argument name="index" xsi:type="string">telephone</argument>
+                            <argument name="id" xsi:type="string">telephone</argument>
+                            <argument name="sortable" xsi:type="string">0</argument>
+                            <argument name="column_css_class" xsi:type="string">col-telephone</argument>
+                            <argument name="header_css_class" xsi:type="string">col-telephone</argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

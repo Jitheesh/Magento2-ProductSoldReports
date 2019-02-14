@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * @category Jworks
+ * @package ProductReports
+ * @author Jitheesh V O <jitheeshvo@gmail.com>
+ * @copyright Copyright (c) 2018 Digital Boutique (http://www.digitalboutique.co.uk/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Jworks_ProductReports::advancedreports" title="Reports" translate="title" sortOrder="70">
+                    <resource id="Jworks_ProductReports::report_products" title="Products" translate="title" sortOrder="60">
+                        <resource id="Jworks_ProductReports::details" title="Ordered" translate="title" sortOrder="40" />
+                        <resource id="Jworks_ProductReports::exportcsv" title="csv export" translate="title" sortOrder="40" />
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
